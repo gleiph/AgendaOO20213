@@ -8,7 +8,6 @@ package br.gleiph.agenda.view;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -27,8 +26,8 @@ import javax.swing.ListSelectionModel;
 public class Tela extends JFrame{
     
     private JPanel painelPrincipal;
-    private JPanel painelMenu;
-    private JPanel painelFormulario;
+//    private JPanel painelMenu;
+//    private JPanel painelFormulario;
 
     public Tela() {
         super("Agenda");
@@ -46,11 +45,11 @@ public class Tela extends JFrame{
         this.painelPrincipal.setLayout(new BorderLayout());
         
         desenhaMenu();
-        this.painelPrincipal.add(this.painelMenu, BorderLayout.WEST);
+        
         
         
         desenhaFormulario();
-        this.painelPrincipal.add(this.painelFormulario, BorderLayout.CENTER);
+        
         
 
         this.add(this.painelPrincipal);
@@ -61,10 +60,11 @@ public class Tela extends JFrame{
     
     private void desenhaMenu(){
         
-        this.painelMenu = new JPanel();
-        this.painelMenu.setBorder(BorderFactory.createTitledBorder("Contatos"));
+        JPanel painelMenu;
+        painelMenu = new JPanel();
+        painelMenu.setBorder(BorderFactory.createTitledBorder("Contatos"));
         this.setLayout(new BorderLayout());
-        this.painelMenu.setPreferredSize(new Dimension(120, 300));
+        painelMenu.setPreferredSize(new Dimension(120, 300));
         
         DefaultListModel<Contato> model = new DefaultListModel<>();
         model.addElement(new Contato("Maria", "(32) 99999-8888", "Celular"));
@@ -78,12 +78,14 @@ public class Tela extends JFrame{
         
         painelMenu.add(new JScrollPane(listaContatos), BorderLayout.CENTER);
         
+        this.painelPrincipal.add(painelMenu, BorderLayout.WEST);
     }
     
     private void desenhaFormulario(){
         
-        this.painelFormulario = new JPanel();
-        this.painelFormulario.setBorder(BorderFactory.createTitledBorder("Formulário"));
+        JPanel painelFormulario;
+        painelFormulario = new JPanel();
+        painelFormulario.setBorder(BorderFactory.createTitledBorder("Formulário"));
         
         
         JLabel jlNome = new JLabel("Nome: ");
@@ -110,6 +112,8 @@ public class Tela extends JFrame{
         
         JButton btnAtualiza = new JButton("Atualiza");
         painelFormulario.add(btnAtualiza);
+        
+        this.painelPrincipal.add(painelFormulario, BorderLayout.CENTER);
         
     }
     
