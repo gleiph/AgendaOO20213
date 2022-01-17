@@ -5,6 +5,7 @@
  */
 package br.gleiph.agenda.view;
 
+import br.gleiph.agenda.controller.AdicionarContato;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -26,9 +27,13 @@ import javax.swing.ListSelectionModel;
 public class Tela extends JFrame{
     
     private JPanel painelPrincipal;
-//    private JPanel painelMenu;
-//    private JPanel painelFormulario;
 
+    private JList<Contato> listaContatos;
+    
+    private JTextField jtNome;
+    private JTextField jtTelefone;
+    private JTextField jtDetalhe;
+    
     public Tela() {
         super("Agenda");
     }
@@ -71,7 +76,7 @@ public class Tela extends JFrame{
         model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular"));
         model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular"));
         
-        JList<Contato> listaContatos = new JList<>(model);
+        listaContatos = new JList<>(model);
         listaContatos.setVisible(true);
         listaContatos.setPreferredSize(new Dimension(100, 300));
         listaContatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -89,22 +94,23 @@ public class Tela extends JFrame{
         
         
         JLabel jlNome = new JLabel("Nome: ");
-        JTextField jtNome = new JTextField(20);
+        jtNome = new JTextField(20);
         painelFormulario.add(jlNome);
         painelFormulario.add(jtNome);
         
         JLabel jlTelefone = new JLabel("Telefone: ");
-        JTextField jtTelefone = new JTextField(20);
+        jtTelefone = new JTextField(20);
         painelFormulario.add(jlTelefone);
         painelFormulario.add(jtTelefone);
         
         JLabel jlDetalhe = new JLabel("Detalhe: ");
-        JTextField jtDetalhe = new JTextField(20);
+        jtDetalhe = new JTextField(20);
         painelFormulario.add(jlDetalhe);
         painelFormulario.add(jtDetalhe);
         
         
         JButton btnAdiciona = new JButton("Adiciona");
+        btnAdiciona.addActionListener(new AdicionarContato(this));
         painelFormulario.add(btnAdiciona);
         
         JButton btnRemove = new JButton("Remove");
@@ -121,4 +127,39 @@ public class Tela extends JFrame{
         Tela tela = new Tela();
         tela.desenha();
     }
+
+    public JList<Contato> getListaContatos() {
+        return listaContatos;
+    }
+
+    public void setListaContatos(JList<Contato> listaContatos) {
+        this.listaContatos = listaContatos;
+    }
+
+    public JTextField getJtNome() {
+        return jtNome;
+    }
+
+    public void setJtNome(JTextField jtNome) {
+        this.jtNome = jtNome;
+    }
+
+    public JTextField getJtTelefone() {
+        return jtTelefone;
+    }
+
+    public void setJtTelefone(JTextField jtTelefone) {
+        this.jtTelefone = jtTelefone;
+    }
+
+    public JTextField getJtDetalhe() {
+        return jtDetalhe;
+    }
+
+    public void setJtDetalhe(JTextField jtDetalhe) {
+        this.jtDetalhe = jtDetalhe;
+    }
+    
+    
+    
 }
