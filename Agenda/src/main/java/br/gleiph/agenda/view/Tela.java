@@ -7,6 +7,7 @@ package br.gleiph.agenda.view;
 
 import br.gleiph.agenda.controller.AdicionarContato;
 import br.gleiph.agenda.controller.RemoverContato;
+import br.gleiph.agenda.controller.TratarLista;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -36,6 +37,8 @@ public class Tela extends JFrame{
     private JTextField jtNome;
     private JTextField jtTelefone;
     private JTextField jtDetalhe;
+    
+    private int lastIndex;
     
     public Tela() {
         super("Agenda");
@@ -83,6 +86,8 @@ public class Tela extends JFrame{
         listaContatos.setVisible(true);
         listaContatos.setPreferredSize(new Dimension(100, 300));
         listaContatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        listaContatos.addListSelectionListener(new TratarLista(this));
         
         painelMenu.add(new JScrollPane(listaContatos), BorderLayout.CENTER);
         
@@ -162,6 +167,14 @@ public class Tela extends JFrame{
 
     public void setJtDetalhe(JTextField jtDetalhe) {
         this.jtDetalhe = jtDetalhe;
+    }
+
+    public int getLastIndex() {
+        return lastIndex;
+    }
+
+    public void setLastIndex(int lastIndex) {
+        this.lastIndex = lastIndex;
     }
     
     
