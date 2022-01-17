@@ -6,6 +6,7 @@
 package br.gleiph.agenda.view;
 
 import br.gleiph.agenda.controller.AdicionarContato;
+import br.gleiph.agenda.controller.LimparFormulario;
 import br.gleiph.agenda.controller.RemoverContato;
 import br.gleiph.agenda.controller.TratarLista;
 import br.gleiph.agenda.model.Contato;
@@ -80,7 +81,6 @@ public class Tela extends JFrame{
         DefaultListModel<Contato> model = new DefaultListModel<>();
         model.addElement(new Contato("Maria", "(32) 99999-8888", "Celular"));
         model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular"));
-        model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular"));
         
         listaContatos = new JList<>(model);
         listaContatos.setVisible(true);
@@ -127,6 +127,10 @@ public class Tela extends JFrame{
         
         JButton btnAtualiza = new JButton("Atualiza");
         painelFormulario.add(btnAtualiza);
+        
+        JButton btnLimpa = new JButton("Limpa");
+        btnLimpa.addActionListener(new LimparFormulario(this));
+        painelFormulario.add(btnLimpa);
         
         this.painelPrincipal.add(painelFormulario, BorderLayout.CENTER);
         
