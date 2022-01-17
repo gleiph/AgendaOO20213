@@ -6,9 +6,12 @@
 package br.gleiph.agenda.view;
 
 import br.gleiph.agenda.controller.AdicionarContato;
+import br.gleiph.agenda.controller.RemoverContato;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -114,6 +117,7 @@ public class Tela extends JFrame{
         painelFormulario.add(btnAdiciona);
         
         JButton btnRemove = new JButton("Remove");
+        btnRemove.addActionListener(new RemoverContato(this));
         painelFormulario.add(btnRemove);
         
         JButton btnAtualiza = new JButton("Atualiza");
