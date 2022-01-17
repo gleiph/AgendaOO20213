@@ -8,13 +8,16 @@ package br.gleiph.agenda.view;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.HeadlessException;
+import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -40,17 +43,20 @@ public class Tela extends JFrame{
         this.setVisible(true);
         
         this.painelPrincipal = new JPanel();
-        
         this.painelPrincipal.setLayout(new BorderLayout());
         
         desenhaMenu();
-        
         this.painelPrincipal.add(this.painelMenu, BorderLayout.WEST);
         
         
-        this.add(this.painelPrincipal);
+        desenhaFormulario();
+        this.painelPrincipal.add(this.painelFormulario, BorderLayout.CENTER);
         
+
+        this.add(this.painelPrincipal);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        this.repaint();
     }
     
     private void desenhaMenu(){
@@ -71,6 +77,39 @@ public class Tela extends JFrame{
         listaContatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         painelMenu.add(new JScrollPane(listaContatos), BorderLayout.CENTER);
+        
+    }
+    
+    private void desenhaFormulario(){
+        
+        this.painelFormulario = new JPanel();
+        this.painelFormulario.setBorder(BorderFactory.createTitledBorder("Formulário"));
+        
+        
+        JLabel jlNome = new JLabel("Nome: ");
+        JTextField jtNome = new JTextField(20);
+        painelFormulario.add(jlNome);
+        painelFormulario.add(jtNome);
+        
+        JLabel jlTelefone = new JLabel("Telefone: ");
+        JTextField jtTelefone = new JTextField(20);
+        painelFormulario.add(jlTelefone);
+        painelFormulario.add(jtTelefone);
+        
+        JLabel jlDetalhe = new JLabel("Detalhe: ");
+        JTextField jtDetalhe = new JTextField(20);
+        painelFormulario.add(jlDetalhe);
+        painelFormulario.add(jtDetalhe);
+        
+        
+        JButton btnAdiciona = new JButton("Adiciona");
+        painelFormulario.add(btnAdiciona);
+        
+        JButton btnRemove = new JButton("Remove");
+        painelFormulario.add(btnRemove);
+        
+        JButton btnAtualiza = new JButton("Atualiza");
+        painelFormulario.add(btnAtualiza);
         
     }
     
