@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.gleiph.agenda.controller;
 
 import br.gleiph.agenda.controller.utils.Arquivo;
@@ -11,11 +7,11 @@ import br.gleiph.agenda.model.Contato;
 import br.gleiph.agenda.view.Tela;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
@@ -25,7 +21,8 @@ import javax.swing.ListModel;
  */
 public class AtualizaDados implements WindowListener{
 
-    private Tela tela;
+    private static final String CAMINHO = "dados.json";
+    private final Tela tela;
 
     public AtualizaDados(Tela tela) {
         this.tela = tela;
@@ -34,7 +31,23 @@ public class AtualizaDados implements WindowListener{
     
     @Override
     public void windowOpened(WindowEvent e) {
-        System.out.println("windowOpened");
+        
+        try {
+            String dados = Arquivo.lerArquivo(CAMINHO);
+            List<Contato> contatos = JSON.toContatos(dados);
+            
+            DefaultListModel<Contato> modelo = new DefaultListModel<>();
+            
+            for (Contato contato : contatos) {
+                modelo.addElement(contato);
+            }
+            
+            tela.getListaContatos().setModel(modelo);
+            tela.repaint();
+            
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(tela, "Não foi possível carregar os dados da agenda!");
+        }
     }
 
     @Override
@@ -50,7 +63,7 @@ public class AtualizaDados implements WindowListener{
             String toJSON = JSON.toJSON(contatos);
             System.out.println("toJSON = " + toJSON);
             
-            Arquivo.escreverArquivo("dados.json", toJSON);
+            Arquivo.escreverArquivo(CAMINHO, toJSON);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(tela, "Não foi possivel salvar os dados");
         }
@@ -70,6 +83,7 @@ public class AtualizaDados implements WindowListener{
 
     @Override
     public void windowActivated(WindowEvent e) {
+        System.out.println("Ativado");
     }
 
     @Override

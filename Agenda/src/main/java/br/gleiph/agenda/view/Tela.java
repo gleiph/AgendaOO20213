@@ -44,15 +44,17 @@ public class Tela extends JFrame{
     
     public Tela() {
         super("Agenda");
+        this.addWindowListener(new AtualizaDados(this));
     }
     
     
     
     
     public void desenha(){
-        
+//        this.addWindowListener(new AtualizaDados(this));
         this.setSize(400, 300);
         this.setVisible(true);
+        
         
         this.painelPrincipal = new JPanel();
         this.painelPrincipal.setLayout(new BorderLayout());
@@ -67,7 +69,7 @@ public class Tela extends JFrame{
 
         this.add(this.painelPrincipal);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addWindowListener(new AtualizaDados(this));
+        
         
         this.repaint();
     }
