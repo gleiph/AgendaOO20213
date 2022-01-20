@@ -6,6 +6,7 @@
 package br.gleiph.agenda.view;
 
 import br.gleiph.agenda.controller.AdicionarContato;
+import br.gleiph.agenda.controller.AtualizaDados;
 import br.gleiph.agenda.controller.EditarContato;
 import br.gleiph.agenda.controller.LimparFormulario;
 import br.gleiph.agenda.controller.RemoverContato;
@@ -13,8 +14,7 @@ import br.gleiph.agenda.controller.TratarLista;
 import br.gleiph.agenda.model.Contato;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -67,6 +67,7 @@ public class Tela extends JFrame{
 
         this.add(this.painelPrincipal);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new AtualizaDados(this));
         
         this.repaint();
     }
@@ -100,6 +101,7 @@ public class Tela extends JFrame{
         JPanel painelFormulario;
         painelFormulario = new JPanel();
         painelFormulario.setBorder(BorderFactory.createTitledBorder("Formulário"));
+        painelFormulario.setLayout(new GridLayout(0, 2));
         
         
         JLabel jlNome = new JLabel("Nome: ");
@@ -140,7 +142,9 @@ public class Tela extends JFrame{
     
     public static void main(String[] args) {
         Tela tela = new Tela();
+        
         tela.desenha();
+        tela.pack();
     }
 
     public JList<Contato> getListaContatos() {
