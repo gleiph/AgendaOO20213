@@ -1,8 +1,8 @@
 
 package br.gleiph.agenda.controller;
 
-import br.gleiph.agenda.controller.utils.Arquivo;
-import br.gleiph.agenda.controller.utils.JSON;
+import br.gleiph.agenda.utils.Arquivo;
+import br.gleiph.agenda.utils.JSON;
 import br.gleiph.agenda.model.Contato;
 import br.gleiph.agenda.view.Tela;
 import java.awt.event.WindowEvent;

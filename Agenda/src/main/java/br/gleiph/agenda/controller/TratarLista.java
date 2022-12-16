@@ -33,6 +33,7 @@ public class TratarLista implements ListSelectionListener{
             tela.getJtNome().setText(contato.getNome());
             tela.getJtTelefone().setText(contato.getTelefone());
             tela.getJtDetalhe().setText(contato.getDetalhe());
+            tela.getJtEmail().setText(contato.getEmail());
             
             tela.setLastIndex(index);
             

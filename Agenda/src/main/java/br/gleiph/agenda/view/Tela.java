@@ -12,6 +12,7 @@ import br.gleiph.agenda.controller.LimparFormulario;
 import br.gleiph.agenda.controller.RemoverContato;
 import br.gleiph.agenda.controller.TratarLista;
 import br.gleiph.agenda.model.Contato;
+import br.gleiph.agenda.model.EmailException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -39,6 +40,7 @@ public class Tela extends JFrame{
     private JTextField jtNome;
     private JTextField jtTelefone;
     private JTextField jtDetalhe;
+    private JTextField jtEmail;
     
     private int lastIndex;
     
@@ -74,7 +76,7 @@ public class Tela extends JFrame{
         this.repaint();
     }
     
-    private void desenhaMenu(){
+    private void desenhaMenu() {
         
         JPanel painelMenu;
         painelMenu = new JPanel();
@@ -83,8 +85,8 @@ public class Tela extends JFrame{
         painelMenu.setPreferredSize(new Dimension(120, 300));
         
         DefaultListModel<Contato> model = new DefaultListModel<>();
-        model.addElement(new Contato("Maria", "(32) 99999-8888", "Celular"));
-        model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular"));
+        //model.addElement(new Contato("Maria", "(32) 99999-8888", "Celular", "mario@gmail.com"));
+        //model.addElement(new Contato("Joao", "(32) 99999-8887", "Celular", "maria@gmail.com"));
         
         listaContatos = new JList<>(model);
         listaContatos.setVisible(true);
@@ -120,6 +122,11 @@ public class Tela extends JFrame{
         jtDetalhe = new JTextField(20);
         painelFormulario.add(jlDetalhe);
         painelFormulario.add(jtDetalhe);
+        
+        JLabel jlEmail = new JLabel("Email: ");
+        jtEmail = new JTextField(20);
+        painelFormulario.add(jlEmail);
+        painelFormulario.add(jtEmail);
         
         
         JButton btnAdiciona = new JButton("Adiciona");
@@ -187,6 +194,10 @@ public class Tela extends JFrame{
 
     public void setLastIndex(int lastIndex) {
         this.lastIndex = lastIndex;
+    }
+
+    public JTextField getJtEmail() {
+        return jtEmail;
     }
     
     

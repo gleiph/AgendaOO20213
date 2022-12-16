@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.gleiph.agenda.controller.utils;
+package br.gleiph.agenda.utils;
 
 import java.io.BufferedWriter;
 import java.io.File;

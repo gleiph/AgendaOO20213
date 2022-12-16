@@ -27,6 +27,7 @@ public class LimparFormulario implements ActionListener{
         tela.getJtNome().setText("");
         tela.getJtTelefone().setText("");
         tela.getJtDetalhe().setText("");
+        tela.getJtEmail().setText("");
         
         tela.repaint();
     }

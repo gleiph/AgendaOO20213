@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.gleiph.agenda.controller.utils;
+package br.gleiph.agenda.utils;
 
 import br.gleiph.agenda.model.Contato;
+import br.gleiph.agenda.model.EmailException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,16 +47,21 @@ public class JSON {
     
     public static void main(String[] args) {
 
-        List<Contato> contatos = new ArrayList<>();
-        
-        contatos.add(new Contato("Mario", "(32) 99999-8888", "Casa"));
-        contatos.add(new Contato("Maria", "(32) 99999-9999", "DCC"));
-        
-        String json = JSON.toJSON(contatos);
-        System.out.println("json = " + json);
-        
-        for (Contato contato : JSON.toContatos(json)) {
-            System.out.println(contato);
+        try {
+            List<Contato> contatos = new ArrayList<>();
+            
+            
+            contatos.add(new Contato("Mario", "(32) 99999-8888", "Casa", "mario@gmail.com"));
+            contatos.add(new Contato("Maria", "(32) 99999-9999", "DCC", "maria@gmail.com"));
+            
+            String json = JSON.toJSON(contatos);
+            System.out.println("json = " + json);
+            
+            for (Contato contato : JSON.toContatos(json)) {
+                System.out.println(contato);
+            }
+        } catch (EmailException ex) {
+            Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

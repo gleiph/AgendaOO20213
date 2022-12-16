@@ -6,9 +6,12 @@
 package br.gleiph.agenda.controller;
 
 import br.gleiph.agenda.model.Contato;
+import br.gleiph.agenda.model.EmailException;
 import br.gleiph.agenda.view.Tela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -16,28 +19,34 @@ import javax.swing.JOptionPane;
  *
  * @author gleip
  */
-public class AdicionarContato implements ActionListener{
+public class AdicionarContato implements ActionListener {
 
     private Tela tela;
 
     public AdicionarContato(Tela tela) {
         this.tela = tela;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(tela, "Adicionando contato");
         
+
         DefaultListModel<Contato> model = (DefaultListModel<Contato>) tela.getListaContatos().getModel();
-        
-        model.addElement(new Contato(tela.getJtNome().getText(), 
-                tela.getJtTelefone().getText(), 
-                tela.getJtDetalhe().getText())
-        );
-        
+
+        try {
+            model.addElement(new Contato(tela.getJtNome().getText(),
+                    tela.getJtTelefone().getText(),
+                    tela.getJtDetalhe().getText(),
+                    tela.getJtEmail().getText())
+            );
+            JOptionPane.showMessageDialog(tela, "Adicionando contato");
+        } catch (EmailException ex) {
+            JOptionPane.showMessageDialog(tela, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+
         tela.getListaContatos().setModel(model);
         tela.repaint();
-        
+
     }
-    
+
 }
