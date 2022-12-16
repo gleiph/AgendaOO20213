@@ -36,6 +36,7 @@ public class RemoverContato implements ActionListener {
 
             modelo.removeElementAt(selectedIndex);
             tela.getListaContatos().setModel(modelo);
+            tela.getListaContatos().setSelectedIndex(selectedIndex);
             tela.repaint();
         }
 

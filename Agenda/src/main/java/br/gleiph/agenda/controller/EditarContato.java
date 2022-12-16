@@ -10,8 +10,6 @@ import br.gleiph.agenda.model.EmailException;
 import br.gleiph.agenda.view.Tela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -38,6 +36,8 @@ public class EditarContato implements ActionListener {
             contato.setTelefone(tela.getJtTelefone().getText());
             contato.setDetalhe(tela.getJtDetalhe().getText());
             contato.setEmail(tela.getJtEmail().getText());
+            
+            JOptionPane.showMessageDialog(tela, "Contato atualizado!");
         } catch (EmailException ex) {
             JOptionPane.showMessageDialog(tela, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }

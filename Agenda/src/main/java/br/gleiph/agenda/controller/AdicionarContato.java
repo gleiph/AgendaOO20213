@@ -39,7 +39,6 @@ public class AdicionarContato implements ActionListener {
                     tela.getJtDetalhe().getText(),
                     tela.getJtEmail().getText())
             );
-            JOptionPane.showMessageDialog(tela, "Adicionando contato");
         } catch (EmailException ex) {
             JOptionPane.showMessageDialog(tela, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
