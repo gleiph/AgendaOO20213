@@ -53,7 +53,7 @@ public class Tela extends JFrame{
     
     public void desenha(){
 //        this.addWindowListener(new AtualizaDados(this));
-        this.setSize(400, 300);
+        this.setSize(300, 200);
         this.setVisible(true);
         
         
@@ -81,7 +81,7 @@ public class Tela extends JFrame{
         painelMenu = new JPanel();
         painelMenu.setBorder(BorderFactory.createTitledBorder("Contatos"));
 //        this.setLayout(new BorderLayout());
-        painelMenu.setPreferredSize(new Dimension(120, 300));
+        painelMenu.setPreferredSize(new Dimension(120, 200));
         
         DefaultListModel<Contato> model = new DefaultListModel<>();
         
@@ -103,45 +103,53 @@ public class Tela extends JFrame{
         JPanel painelFormulario;
         painelFormulario = new JPanel();
         painelFormulario.setBorder(BorderFactory.createTitledBorder("Formulário"));
-        painelFormulario.setLayout(new GridLayout(0, 2));
+        painelFormulario.setLayout(new BorderLayout());
         
+        JPanel painelLabel = new JPanel(new GridLayout(0, 1));
+        JPanel painelTextField = new JPanel(new GridLayout(0, 1));
         
         JLabel jlNome = new JLabel("Nome: ");
         jtNome = new JTextField(20);
-        painelFormulario.add(jlNome);
-        painelFormulario.add(jtNome);
+        painelLabel.add(jlNome);
+        painelTextField.add(jtNome);
         
         JLabel jlTelefone = new JLabel("Telefone: ");
         jtTelefone = new JTextField(20);
-        painelFormulario.add(jlTelefone);
-        painelFormulario.add(jtTelefone);
+        painelLabel.add(jlTelefone);
+        painelTextField.add(jtTelefone);
         
         JLabel jlDetalhe = new JLabel("Detalhe: ");
         jtDetalhe = new JTextField(20);
-        painelFormulario.add(jlDetalhe);
-        painelFormulario.add(jtDetalhe);
+        painelLabel.add(jlDetalhe);
+        painelTextField.add(jtDetalhe);
         
         JLabel jlEmail = new JLabel("Email: ");
         jtEmail = new JTextField(20);
-        painelFormulario.add(jlEmail);
-        painelFormulario.add(jtEmail);
+        painelLabel.add(jlEmail);
+        painelTextField.add(jtEmail);
         
+        painelFormulario.add(painelLabel, BorderLayout.WEST);
+        painelFormulario.add(painelTextField, BorderLayout.EAST);
+        
+        JPanel painelBotoes = new JPanel();
         
         JButton btnAdiciona = new JButton("Adiciona");
         btnAdiciona.addActionListener(new AdicionarContato(this));
-        painelFormulario.add(btnAdiciona);
+        painelBotoes.add(btnAdiciona);
         
         JButton btnRemove = new JButton("Remove");
         btnRemove.addActionListener(new RemoverContato(this));
-        painelFormulario.add(btnRemove);
+        painelBotoes.add(btnRemove);
         
         JButton btnAtualiza = new JButton("Atualiza");
         btnAtualiza.addActionListener(new EditarContato(this));
-        painelFormulario.add(btnAtualiza);
+        painelBotoes.add(btnAtualiza);
         
         JButton btnLimpa = new JButton("Limpa");
         btnLimpa.addActionListener(new LimparFormulario(this));
-        painelFormulario.add(btnLimpa);
+        painelBotoes.add(btnLimpa);
+        
+        painelFormulario.add(painelBotoes, BorderLayout.SOUTH);
         
         this.painelPrincipal.add(painelFormulario, BorderLayout.CENTER);
         
