@@ -10,8 +10,6 @@ import br.gleiph.agenda.model.EmailException;
 import br.gleiph.agenda.view.Tela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
